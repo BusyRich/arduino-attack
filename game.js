@@ -7,6 +7,8 @@ for(var h = 0; h <= process.config.game.stamina; h++) {
 }
 
 var game = function() {
+  this.fancy = require('colorize').console;
+
   this.request = require('request');
   this.config = process.config.game;
 
@@ -79,10 +81,25 @@ game.prototype.damage = function(damage) {
   }
 
   if(this.life[0] === 0) {
+    this.dead();
     return false;
   } else {
     return true;
   }
+};
+
+game.prototype.dead = function() {
+  this.fancy.log('#yellow[        --_--]');
+  this.fancy.log('#yellow[     (  -_    _).]');
+  this.fancy.log('#yellow[   ( ~       )   )]');
+  this.fancy.log('#yellow[ (( )  (    )  ()  )]');
+  this.fancy.log('#yellow[  (.   )) (       )]');
+  this.fancy.log('#yellow[    ``..     ..``]');
+  this.fancy.log('#yellow[         | |]');
+  this.fancy.log('#yellow[       (=| |=)]');
+  this.fancy.log('#yellow[         | |    ]');
+  this.fancy.log('#yellow[     (../( )\.))]');
+  this.fancy.log('  You Died...Hard');
 };
 
 module.exports = game;
