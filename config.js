@@ -1,5 +1,5 @@
 module.exports = {
-  debug: true,
+  debug: false,
   game: {
     hearts: 3,
     heartValue: 2,
