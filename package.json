@@ -1,0 +1,17 @@
+{
+  "name": "arduino-battle",
+  "version": "0.0.0",
+  "description": "A multi-player battle game utilizing arduino as a diaply/controller",
+  "main": "battle.js",
+  "dependencies": {
+    "johnny-five": "~0.6.11",
+    "request": "~2.21.0",
+    "express": "~3.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Richard Key",
+  "license": "BSD"
+}
