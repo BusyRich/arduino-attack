@@ -1,4 +1,6 @@
 # Arduino Attack!
+*Disclaimer: Work in progress. Code may not work for all cases and most likely have lots of bugs. Comments to come as well.*
+
 Arduino Attack is a small, simple, network-enabled game that uses Arduino (using [johnny five](https://github.com/rwldrn/johnny-five)) as the controller and basic interface. However, it does have a debug mode that does not require an Arduino. **[watch it in action!](http://www.youtube.com/watch?v=1NalU4d7a20)**
 
 ## The Game
