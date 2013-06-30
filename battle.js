@@ -14,7 +14,7 @@ var hardware = require('./hardware');
 
 var main = new game();
 hardware.updateLife(main.life);
-hardware.updatePower(main.stamina);
+hardware.updateStamina(main.stamina);
 hardware.on('attack', function(power) {
   main.battle(power, function(err, success) {
     if(err) {
@@ -60,7 +60,7 @@ app.post('/attack/:power', function(req, res) {
   console.log('Damage ' + attack);
   main.damage(attack);
   hardware.updateLife(main.life);
-  hardware.updatePower(main.stamina);
+  hardware.updateStamina(main.stamina);
   res.send();
 });
 
