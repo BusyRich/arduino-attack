@@ -2,6 +2,7 @@ var five = require('johnny-five');
 var emitter = require('events').EventEmitter;
 
 var hardware = {};
+hardware.config = process.config.arduino;
 hardware.ready = false;
 hardware.queue = [];
 hardware.emitter = new emitter();
@@ -12,12 +13,12 @@ hardware._board = new five.Board();
 //Basic hardware components
 hardware.powerLED = 1;
 hardware.connectLED = 2;
-hardware.lifeLEDs = [13,12,11];
-hardware.powerLEDs = [10,9,8];
+hardware.lifeLEDs = hardware.config.leds.life;
+hardware.powerLEDs = hardware.config.leds.stamina;
 hardware.button = null;
 hardware.powerPot = null;
 hardware._power = 0;
-hardware.powerIndicator = [2,3,4];
+hardware.powerIndicator = hardware.config.leds.power;
 hardware.buzzer = null;
 
 hardware._board.on('ready', function() {
@@ -29,20 +30,20 @@ hardware._board.on('ready', function() {
     hardware.powerLEDs[l] = new five.Led(hardware.powerLEDs[l]);
   }
 
-  hardware.button = new five.Button(6);
+  hardware.button = new five.Button(hardware.config.attack);
   hardware.button.on('up', function() {
     hardware.emitter.emit('attack', hardware._power);
   });
 
   hardware.powerPot = potentiometer = new five.Sensor({
-    pin: 'A0',
+    pin: hardware.config.power,
     freq: 250
   });
 
   hardware.powerIndicator = [
-    new five.Led(2),
-    new five.Led(3),
-    new five.Led(4)
+    new five.Led(hardware.powerIndicator[0]),
+    new five.Led(hardware.powerIndicator[1]),
+    new five.Led(hardware.powerIndicator[2])
   ];
 
   hardware.powerPot.scale(0, 99).on('read', function(err, value) {

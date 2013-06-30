@@ -8,10 +8,17 @@ var hitRanges = [
 
 var game = function() {
   this.request = require('request');
+  this.config = process.config.game;
 
-  this.maxLife = 2;
-  this.life = [this.maxLife,this.maxLife,this.maxLife];
-  this.stamina = 3;
+  //Game stats
+  this.life = [];
+  for(var l = 0; l < this.config.hearts; l++) {
+    this.life.push(this.config.heartValue);
+  }
+
+  this.stamina = this.config.stamina;
+
+  //Opponent connection information
   this.connected = false;
   this.opponent = {
     host: 'localhost',

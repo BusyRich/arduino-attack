@@ -2,6 +2,9 @@
 var express = require('express');
 var app = express();
 
+//Load in the config file
+process.config = require('./config');
+
 //Game files
 var game = require('./game');
 var hardware = require('./hardware');
