@@ -55,13 +55,13 @@ game.prototype.battle = function(power, callback) {
   }
 };
 
-game.prototype.damage = function(attack) {
-  if(attack === 3 && this.stamina > 0) {
+game.prototype.damage = function(damage) {
+  if(damage === this.config.stamina && this.stamina > 0) {
     this.stamina -= 1;
   }
 
   for(var a = this.life.length - 1; a >= 0; a--) {
-    if(attack < 1) {
+    if(damage < 1) {
       break;
     }
 
@@ -69,11 +69,11 @@ game.prototype.damage = function(attack) {
       continue;
     }
 
-    if(this.life[a] >= attack) {
-      this.life[a] -= attack;
-      attack = 0;
+    if(this.life[a] >= damage) {
+      this.life[a] -= damage;
+      damage = 0;
     } else {
-      attack -= this.life[a];
+      damage -= this.life[a];
       this.life[a] = 0;
     }
   }

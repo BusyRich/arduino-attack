@@ -18,7 +18,7 @@ if(!process.config.debug) {
 hardware.powerLED = 1;
 hardware.connectLED = 2;
 hardware.lifeLEDs = hardware.config.leds.life;
-hardware.powerLEDs = hardware.config.leds.stamina;
+hardware.staminaLEDs = hardware.config.leds.stamina;
 hardware.button = null;
 hardware.powerPot = null;
 hardware._power = 0;
@@ -32,7 +32,7 @@ if(!process.config.debug || process.config.debug === false) {
     }
 
     for(var l = 0; l < hardware.lifeLEDs.length; l++) {
-      hardware.powerLEDs[l] = new five.Led(hardware.powerLEDs[l]);
+      hardware.staminaLEDs[l] = new five.Led(hardware.staminaLEDs[l]);
     }
 
     hardware.button = new five.Button(hardware.config.attack);
@@ -113,10 +113,10 @@ hardware.updateLife = function(life) {
   }
 };
 
-hardware.updatePower = function(power) {
+hardware.updateStamina = function(stamina) {
   if(process.config.debug && process.config.debug === true) {
     var sStr = 'Stamina: #yellow['
-    for(var p = 0; p < power; p++) {
+    for(var p = 0; p < stamina; p++) {
       sStr += '|';
     }
 
@@ -126,15 +126,15 @@ hardware.updatePower = function(power) {
   }
 
   if(this.ready === false) {
-    this.queue.push({funct:'updatePower',args: [].slice.call(arguments)});
+    this.queue.push({funct:'updateStamina',args: [].slice.call(arguments)});
     return;
   }
 
-  for(var p = 0; p < this.powerLEDs.length; p++) {
-    if(power >= p + 1) {
-      hardware.powerLEDs[p].on();
+  for(var p = 0; p < this.staminaLEDs.length; p++) {
+    if(stamina >= p + 1) {
+      hardware.staminaLEDs[p].on();
     } else {
-      hardware.powerLEDs[p].off();
+      hardware.staminaLEDs[p].off();
     }
   }
 };
