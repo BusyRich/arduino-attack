@@ -1,10 +1,10 @@
 var hitMax = 1000000;
-var hitRanges = [
-  hitMax * 0.10,
-  hitMax * 0.50,
-  hitMax * 0.30,
-  hitMax * 0.05
-];
+var hitRanges = [];
+for(var h = 0; h <= process.config.game.stamina; h++) {
+  if(h < process.config.game.hitRanges.length) {
+    hitRanges.push(hitMax * process.config.game.hitRanges[h]);
+  }
+}
 
 var game = function() {
   this.request = require('request');
