@@ -5,23 +5,38 @@ var app = express();
 //Load in the config file
 process.config = require('./config');
 
+//Colored console
+var fancy = require('colorize').console;
+
 //Game files
 var game = require('./game');
 var hardware = require('./hardware');
 
 var main = new game();
 hardware.updateLife(main.life);
-hardware.updatePower(main.power);
+hardware.updatePower(main.stamina);
 hardware.on('attack', function(power) {
   main.battle(power, function(err, success) {
-    console.log(err || success);
+    if(err) {
+      return fancy.log('#red[' + err + ']');
+    }
+
+    var aStr = 'Attack ' + power + ' ';
+    if(success) {
+      aStr += '#green[success]';
+    } else {
+      aStr += '#red[fail]';
+    }
+
+    fancy.log(aStr);
+    console.log('--------------------------------');
   });
 });
 
 app.use(express.bodyParser());
 
 app.get('/status', function(req, res) {
-  res.send({life:main.life,power:main.power});
+  res.send({life:main.life,stamina:main.stamina});
 });
 
 app.post('/connect', function(req, res) {
@@ -38,24 +53,20 @@ app.post('/connect', function(req, res) {
 
 app.post('/attack/:power', function(req, res) {
   var attack = parseInt(req.params.power);
-  if(isNaN(attack) || attack > 3 || attack < 0) {
-    return res.send('Power must be a number between 0 and 3');
+  if(isNaN(attack) || attack > process.config.game.stamina || attack < 0) {
+    return res.send('Power must be a number between 0 and ' + process.config.game.stamina);
   }
 
+  console.log('Damage ' + attack);
   main.damage(attack);
   hardware.updateLife(main.life);
-  hardware.updatePower(main.power);
+  hardware.updatePower(main.stamina);
   res.send();
 });
 
-app.post('/test/:power', function(req, res) {
-  main.battle(parseInt(req.params.power), function(err, success) {
-    if(err) {
-      res.send('Error! ' + err);
-    } else {
-      res.send('Attack: ' + success);
-    }
-  });
+app.post('/test', function(req, res) {
+  hardware.test(main.stamina);
+  res.send('Test Battle Initiated');
 });
 
 var port = process.env.PORT || 9740;

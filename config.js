@@ -1,6 +1,7 @@
 module.exports = {
+  debug: false,
   game: {
-    hearts: 2,
+    hearts: 3,
     heartValue: 2,
     stamina: 3 
   },

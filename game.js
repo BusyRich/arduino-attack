@@ -27,7 +27,6 @@ var game = function() {
 };
 
 game.prototype._attack = function(power) {
-  console.log('Attack: ' + power);
   return (Math.floor(Math.random() * hitMax) < hitRanges[power]);
 };
 
@@ -37,7 +36,6 @@ game.prototype.battle = function(power, callback) {
   }
 
   if(this._attack(power)) {
-    console.log(this.opponent);
     this.request({
       uri: 'http://' + this.opponent.host + ':' + this.opponent.port + '/attack/' + power,
       method: 'POST'
@@ -58,8 +56,6 @@ game.prototype.battle = function(power, callback) {
 };
 
 game.prototype.damage = function(attack) {
-  console.log('Damage: ' + attack);
-
   if(attack === 3 && this.stamina > 0) {
     this.stamina -= 1;
   }

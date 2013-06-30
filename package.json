@@ -6,7 +6,8 @@
   "dependencies": {
     "johnny-five": "~0.6.11",
     "request": "~2.21.0",
-    "express": "~3.3.1"
+    "express": "~3.3.1",
+    "colorize": "~0.1.0"
   },
   "devDependencies": {},
   "scripts": {
