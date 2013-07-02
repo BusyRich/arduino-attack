@@ -18,9 +18,14 @@ In theory the game should be able to be played across a network, since it is jus
 The UI is made up of 6 normal LEDs and one RGB LED. The controls are one attack button and a simple potentiometer for selecting your attack power. The pins for each are part of the configuration, which is outlined below.
 
 ```javascript
-leds.life = [1,2,3] //Pins for the leds, from lowest value to highest
-leds.stamina = [1,2,3] //Same idea as life leds
-leds.power = [1,2,3] //Pins for the RGB led to indicate attack power, in the order [R,G,B]
-attack = 1 //Pin for the attack button
+leds.life = [2,3,4] //Pins for the leds, from lowest value to highest
+leds.stamina = [5,6,7] //Same idea as life leds
+leds.power = [9,10,11] //Pins for the RGB led to indicate attack power, in the order [R,G,B]
+attack = 8 //Pin for the attack button
 power = 'A0' //The analog pin of the potentiometer
 ```
+
+### Auduino Layout
+<a href= "https://raw.github.com/BusyRich/arduino-attack/master/layout_bb.jpg">
+  <img src="https://raw.github.com/BusyRich/arduino-attack/master/layout_bb.jpg" alt="Diagram of components layout" style="max-width: 100%;"/>
+</a>
