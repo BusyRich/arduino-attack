@@ -13,11 +13,11 @@ module.exports = {
   },
   arduino: {
     leds: {
-      life: [1,2,3],
-      stamina: [4,5,6],
-      power: [7,8,9]
+      life: [2,3,4],
+      stamina: [5,6,7],
+      power: [9,10,11]
     },
-    attack: 10,
+    attack: 8,
     power: 'A0'
   }
 };
