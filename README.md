@@ -25,7 +25,15 @@ attack = 8 //Pin for the attack button
 power = 'A0' //The analog pin of the potentiometer
 ```
 
+### Parts List
+* x3 Red LED
+* x3 Yellow LED
+* Push Button
+* Potentiometer
+* RGB LED
+
 ### Auduino Layout
 <a href= "https://raw.github.com/BusyRich/arduino-attack/master/layout_bb.jpg">
   <img src="https://raw.github.com/BusyRich/arduino-attack/master/layout_bb.jpg" alt="Diagram of components layout" style="max-width: 100%;"/>
 </a>
+This can be condensed, but the expanded diagram makes it easier to read.
